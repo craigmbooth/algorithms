@@ -3,6 +3,10 @@ algorithms
 
 Craig's python implementations of various algorithms:
 
+checksum_luhn.py
+----------------
+Luhn's algorithm for computing a checksum for some decimal data.  As used for e.g. the final digit of credit card numbers.
+
 multiply_recursive_naive.py
 ---------------------------
 A naive recursive algorithm for multiplying two n-digit numbers.  Scales as O(n^2).
