@@ -47,8 +47,7 @@ def multiply_recursive(x,y):
         #zeroes to the end of a number.
         return pow(10,2*deg)*ac + pow(10,deg)*(ad+bc) + bd
 
-if __name__ == "__main__":
-
+def test_multiply_recursive():
     #If the module is called directly do some testing:
     assert multiply_recursive(1234,4321) == 5332114
     assert multiply_recursive(111,111) == 12321
@@ -62,3 +61,7 @@ if __name__ == "__main__":
             assert multiply_recursive(i,j) == i*j
 
     print '   --multiply_recursive_naive passed tests'
+
+if __name__ == "__main__":
+    
+    test_multiply_recursive()
