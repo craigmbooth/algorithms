@@ -9,15 +9,13 @@ def mergesort_recursive(A):
     #is either 1 or two:
     if len(A) == 1:
         return A
-    elif len(A) == 2:
-        return [min(A),max(A)]
     else:
         A1 = mergesort_recursive(A[:len(A)/2])
         A2 = mergesort_recursive(A[len(A)/2:])
         return merge_arrays(A1,A2)
 
 def merge_arrays(A1,A2):
-    """Given two unsorted lists of length n1 and n2, merge them
+    """Given two sorted lists of length n1 and n2, merge them
     together in ascending order into a single list of length n1+n2
     """
 
@@ -71,6 +69,7 @@ def test_mergesort():
 
         #Check that mergesort gives the same result:
         assert mergesort_recursive(test_list) == sorted(test_list)
+    print "   --test_mergesort() passed tests"
 
 if __name__ == "__main__":
 
