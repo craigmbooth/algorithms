@@ -19,6 +19,7 @@ above.
 
 
 import numpy as np
+from math import ceil,log
 
 def strassen(A,B):
    """
@@ -28,14 +29,20 @@ def strassen(A,B):
    INPUT:  Two square 2d numpy arrays, A and B
    OUTPUT: A single array containing A.B
    """
-
    #Pad up to a power of two:
    n = A.shape[0]
-   next_power_of_2 = 
-
+   next_power_of_2 = int(pow(2, ceil(log(n, 2))))
+   
+   Apad = np.zeros((next_power_of_2,next_power_of_2))
+   Bpad = np.zeros((next_power_of_2,next_power_of_2))
+   
+   Apad[0:n,0:n] = A
+   Bpad[0:n,0:n] = B
+   
    Cpad = strassen_step(Apad,Bpad)
 
    #Strip out the padding and return:
+   return Cpad[0:n,0:n]
 
 def strassen_step(A,B):
    """Strassen's sub-cubic algorithm for matrix multiplication.
@@ -43,7 +50,7 @@ def strassen_step(A,B):
 
    n = A.shape[0]
    if n == 1:
-       return int(A*B)
+       return A*B
    else:
        #Extract sub-matrices:
        Anw = A[:n/2,:n/2]
@@ -78,15 +85,14 @@ def strassen_step(A,B):
        return C.astype(int)
 
 def test_strassen():
-
-    for i in range(100):
-        this_n = np.random.randint(500) #size of matrix for this test
-        max_val = np.random.randint(5000)
-        this_n = 128
-        A = np.random.randint(max_val,size=(this_n,this_n))
-        B = np.random.randint(max_val,size=(this_n,this_n))
-        np.testing.assert_array_equal(strassen(A,B), np.dot(A,B)) 
-
+    n_tests = 10
+    print "   --Testing strassen() with "+str(n_tests)+" tests"
+    for i in range(n_tests):
+       this_n = 1+np.random.randint(10) #size of matrix for this test
+       max_val = np.random.randint(5000)
+       A = np.random.randint(max_val,size=(this_n,this_n))
+       B = np.random.randint(max_val,size=(this_n,this_n))
+       np.testing.assert_array_equal(strassen(A,B), np.dot(A,B)) 
     print "   --test_strassen() tests passed"
 
 if __name__ == "__main__":
