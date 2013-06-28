@@ -39,7 +39,7 @@ def merge_arrays(A1,A2):
         elif i1 >= len(A1) and i2 < len(A2):
             result[counter] = A2[i2]
             i2 += 1
-        #i1 is out of range, just copy in i2:
+        #i2 is out of range, just copy in i1:
         elif i1 < len(A1) and i2 >= len(A2):
             result[counter] = A1[i1]
             i1 += 1
