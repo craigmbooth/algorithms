@@ -12,7 +12,7 @@ def mergesort_recursive(A):
     else:
         A1 = mergesort_recursive(A[:len(A)/2])
         A2 = mergesort_recursive(A[len(A)/2:])
-        return merge_arrays(A1,A2)
+        return combine_arrays(A1,A2)
 
 def merge_arrays(A1,A2):
     """Given two sorted lists of length n1 and n2, merge them
@@ -49,6 +49,29 @@ def merge_arrays(A1,A2):
             raise RuntimeError("This statement should never be reached."
                                 "  Bug in the code")
         counter += 1
+
+    return result
+
+
+def combine_arrays(A,B):
+    """Given two sorted lists of length n1 and n2, merge them
+    together in ascending order into a single list of length n1+n2
+
+    This is a shorter version of merge_arrays.  Somewhat more pythonic.
+    """
+    result = []
+    #Pop results off of A and B until one is empty
+    while min(len(A),len(B)):
+        if (A[0] < B[0]):
+            result.append(A.pop(0))
+        elif (A[0] >= B[0]):
+            result.append(B.pop(0))
+
+    #Then append any remaining elements
+    if len(A):
+        result += A
+    if len(B):
+        result += B
 
     return result
 
