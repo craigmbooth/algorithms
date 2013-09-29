@@ -4,8 +4,8 @@ NSAMPLE = 3
 
 def reservoir_sample(filename):
     """ Get a completely random sample of NSAMPLE lines from
-    a file of unknown length with only one loop through the
-    file.  THe algorithm is the following:
+    a stream of unknown length with only one loop through the
+    file.  The algorithm is the following:
        1. The first NSAMPLE items make up the initial sample
        2. Then for items of index n, generate a random number
           [0,n] and if n < NSAMPLE replace that element of the
